@@ -1,17 +1,11 @@
-// model.js
+// model_Quote.js
 
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/test', {useNewUrlParser:true},
                  (errs)=>errs ? console.log(errs):console.log('db is good to go'));
 
-var DemoSchema = new mongoose.Schema({
-
-    name:{
-        type:String,
-        required:true,
-        minlength:2
-    },
+var TaskSchema = new mongoose.Schema({
 
     title:{
         type:String,
@@ -19,9 +13,18 @@ var DemoSchema = new mongoose.Schema({
         minlength:2
     },
 
-}, {timestamps:true} ); 
+    description:{
+        type:String,
+    },
+
+    completed:{
+        type:Boolean,
+        default: false,
+    },
+
+}, {timestamps:false});
 
 module.exports = {
-    Demo: mongoose.model('Demo', DemoSchema),
+    Task: mongoose.model('Task', TaskSchema),
 }
 
