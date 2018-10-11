@@ -1,0 +1,5 @@
+*/.git/*
+/node_modules/
+/public/list/
+/public/e2e/
+/public/node_modules/
