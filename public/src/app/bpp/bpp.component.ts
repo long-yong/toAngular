@@ -10,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
      
 export class BppComponent implements OnInit {
+
+  counter:number;
+
   num: number;
   randNum: number;
   str: string;
@@ -25,7 +28,7 @@ export class BppComponent implements OnInit {
     }
 
   ngOnInit() {
-
+    this.counter =0; 
     this.num = 7;
     this.randNum = Math.floor( (Math.random()  * 10 ) + 1);
     this.str = 'Hello Angular Developer!';
@@ -43,6 +46,10 @@ export class BppComponent implements OnInit {
     obs.subscribe(data => { 
       this.tasks = data['taskkey'];
     });
+  }
+
+  clickCounter(){
+    this.counter++;
   }
 
 }   
