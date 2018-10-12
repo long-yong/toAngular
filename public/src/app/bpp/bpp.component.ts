@@ -9,8 +9,8 @@ import { BppService } from './bpp.service';
 })
 export class BppComponent implements OnInit {
 
+  title = 'bpp component';
   constructor(private _bppService: BppService) {  }
-
   ngOnInit() {
   }
 

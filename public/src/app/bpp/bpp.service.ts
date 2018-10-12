@@ -18,7 +18,7 @@ export class BppService {
         let url = data['abilities'][0]['ability']['url'];
         let obj2 = this._http.get(url)
         obj2.subscribe(data => {
-        console.log('get pokemon by BppService:',data);
+        console.log('bpp.service got pokemon:',data);
         console.log(data['pokemon'].length + ' pokemons have the ability of '+name);
         });
     });
