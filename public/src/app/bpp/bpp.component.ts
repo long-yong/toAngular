@@ -1,17 +1,48 @@
 
 import { Component, OnInit } from '@angular/core';
-import { BppService } from './bpp.service';
 
+import { HttpClient } from '@angular/common/http';
+     
 @Component({
   selector: 'app-bpp',
   templateUrl: './bpp.component.html',
   styleUrls: ['./bpp.component.css']
 })
-
+     
 export class BppComponent implements OnInit {
+  num: number;
+  randNum: number;
+  str: string;
+  first_name: string;
 
-  title = 'bpp component';
-  constructor(private _bppService: BppService) { }
-  ngOnInit() { }
+  snacks: string[];
+  loggedIn: boolean;
 
-}
+  tasks=null;
+
+    constructor(private _http: HttpClient) {
+      // this.getTasks();
+    }
+
+  ngOnInit() {
+
+    this.num = 7;
+    this.randNum = Math.floor( (Math.random()  * 10 ) + 1);
+    this.str = 'Hello Angular Developer!';
+    this.first_name = 'Alpha';
+
+    this.snacks = ["vanilla latte with skim milk", "brushed suede", "cookie"];
+    this.loggedIn = true;
+
+    this.getTasks();
+
+  }
+
+  getTasks() {
+    let obs = this._http.get('/tasks');
+    obs.subscribe(data => { 
+      this.tasks = data['taskkey'];
+    });
+  }
+
+}   

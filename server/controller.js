@@ -34,16 +34,16 @@ module.exports = {
         .catch(err=>{ res.render('index', {allTasks:err}); })
     },
 
-    tasks:(req,res)=>{
-        Task.find({})
-        .then(data=>{ res.json(data); })
-        .catch(err=>{ res.json(err);  })
-    },
-
     completed:(req,res)=>{
         Task.find({completed:true},{_id:false, title:true, completed:true})
         .then(data=>{ res.json(data); })
         .catch(err=>{ res.json(err);  })
+    },
+
+    tasks:(req,res)=>{
+        Task.find({})
+        .then(data=>{ res.json({taskkey:data}); })
+        .catch(err=>{ res.json({taskkey:data}); })
     },
     
 };

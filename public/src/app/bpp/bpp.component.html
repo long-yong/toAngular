@@ -1,6 +1,13 @@
 
-<p>
-  {{ title }} works!
-</p>
+<h3>Value of num is: {{num}}</h3>
+<h3>Value of randNum is: {{randNum}}</h3>
+<h3>{{str}}</h3>
+<input type="text" [value]="first_name" />
 
+<br><br>
+<p *ngIf="loggedIn">You are logged in!</p>
+<p *ngFor="let snack of snacks">{{snack}}</p>
+<p *ngIf="snacks.length < 3">You need more snacks.</p>
 
+<br><br>
+<a *ngFor="let task of tasks">{{task.title}} ; </a>
