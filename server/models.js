@@ -24,7 +24,37 @@ var TaskSchema = new mongoose.Schema({
 
 }, {timestamps:false});
 
+
+var BookSchema = new mongoose.Schema({
+
+    author:{
+        type:String,
+        required:true,
+        minlength:2
+    },
+
+    country:{
+        type:String,
+    },
+
+    birthday:{
+        type:String,
+    },
+
+    bookname: {
+        type:String,
+        required:true,
+        minlength:2
+    },
+
+    published: {
+        type:String,
+    }
+
+}, {timestamps:true});
+
 module.exports = {
     Task: mongoose.model('Task', TaskSchema),
+    Book: mongoose.model('Book', BookSchema),
 }
 

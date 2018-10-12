@@ -1,6 +1,6 @@
 // controller.js
 
-const { Task, } = require('./models')
+const { Task, Book, } = require('./models')
 
 module.exports = {
 
@@ -36,6 +36,12 @@ module.exports = {
 
     tasks:(req,res)=>{
         Task.find({})
+        .then(data=>{ res.json(data); })
+        .catch(err=>{ res.json(err);  })
+    },
+
+    completed:(req,res)=>{
+        Task.find({completed:true},{_id:false, title:true, completed:true})
         .then(data=>{ res.json(data); })
         .catch(err=>{ res.json(err);  })
     },
