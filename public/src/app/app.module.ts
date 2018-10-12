@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HttpService } from './http.service';
+import { AppService }   from './app.service';
 
 import { BppComponent } from './bpp/bpp.component';
 
@@ -17,7 +17,7 @@ import { BppComponent } from './bpp/bpp.component';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [HttpService],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 

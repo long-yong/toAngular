@@ -12,13 +12,13 @@ export class BppService {
   }
 
   getPokemon(){
-    let obj1 = this._http.get('https://pokeapi.co/api/v2/pokemon/1/');
-    obj1.subscribe(data => {
+    let obs1 = this._http.get('https://pokeapi.co/api/v2/pokemon/1/');
+    obs1.subscribe(data => {
         let name = data['abilities'][0]['ability']['name'];
         let url = data['abilities'][0]['ability']['url'];
-        let obj2 = this._http.get(url)
-        obj2.subscribe(data => {
-        console.log('bpp.service got pokemon:',data);
+        let obs2 = this._http.get(url)
+        obs2.subscribe(data => {
+        console.log('bpp.service got pokemons:',data);
         console.log(data['pokemon'].length + ' pokemons have the ability of '+name);
         });
     });

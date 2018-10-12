@@ -4,15 +4,15 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
-export class HttpService {
+export class AppService {
 
     constructor(private _http: HttpClient){
         this.getTasks();
     }
 
     getTasks(){
-        let tempObservable = this._http.get('/tasks');
-        tempObservable.subscribe(data => console.log("app.service got tasks:", data));
+        let obs = this._http.get('/tasks');
+        obs.subscribe(data => console.log("app.service got tasks:", data));
     }
 
 }
