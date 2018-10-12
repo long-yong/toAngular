@@ -1,13 +1,17 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpService } from './http.service';
 
 import { AppComponent } from './app.component';
+import { HttpService } from './http.service';
+
+import { BppComponent } from './bpp/bpp.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BppComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,3 +22,4 @@ import { AppComponent } from './app.component';
 })
 
 export class AppModule { }
+
