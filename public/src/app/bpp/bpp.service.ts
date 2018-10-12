@@ -23,4 +23,8 @@ export class BppService {
         });
     });
   }
+
+  tmp() {
+    return "method tmp";
+  }
 }

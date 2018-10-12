@@ -7,11 +7,11 @@ import { BppService } from './bpp.service';
   templateUrl: './bpp.component.html',
   styleUrls: ['./bpp.component.css']
 })
+
 export class BppComponent implements OnInit {
 
   title = 'bpp component';
-  constructor(private _bppService: BppService) {  }
-  ngOnInit() {
-  }
+  constructor(private _bppService: BppService) { }
+  ngOnInit() { }
 
 }
