@@ -1,8 +1,10 @@
 #container-c {
-    width:710px;
+    width:550px;
     border: 1px solid black;
-    text-align: left;
     padding-left:10px;
+    display:inline-block;
+    vertical-align: top;
+    text-align: left;    
 }
 
 .inline {

@@ -1,9 +1,11 @@
 #container-a {
-    width:500px;
+    width:550px;
+    height:270px;
     border: 1px solid black;
-    text-align: left;
-    margin-left:30px;
-    padding-left: 150px;
+    padding-left: 10px;
+    display:inline-block;
+    vertical-align: top;
+    text-align: left;    
 }
 
 .inline {
