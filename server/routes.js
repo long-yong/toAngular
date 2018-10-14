@@ -26,9 +26,11 @@ module.exports = function(app) {
 
     app.get('/delete/:id',               controller.delete);
 
-    app.get('/tasks',                    controller.tasks);
-
     app.get ('/completed',               controller.completed);
+
+    app.get('/alltask',                  controller.allTask);
+
+    app.get('/onetask/:id',              controller.oneTask);
 
     return app;
 }

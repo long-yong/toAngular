@@ -1,0 +1,18 @@
+<div id='container-c'>
+
+  
+<h1> {{ title }} </h1> 
+
+<p *ngFor='let task of allTask'>
+  {{task.title}}; &nbsp; {{task._id}}; <button (click)='clickShow(task._id)'>Show</button> &nbsp;
+</p>
+
+
+<p *ngIf='oneTask'>
+  detail: _id={{oneTask._id}}; title={{oneTask.title}}; completed={{oneTask.completed}}; description={{oneTask.description}}
+</p>
+
+
+<br>
+
+</div>

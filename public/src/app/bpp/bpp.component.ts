@@ -11,40 +11,36 @@ import { HttpClient } from '@angular/common/http';
      
 export class BppComponent implements OnInit {
 
-  counter:number;
+  title:string;
 
-  num: number;
-  randNum: number;
-  str: string;
-  first_name: string;
-
+  name: string;
+  randNum: number;  
   snacks: string[];
   loggedIn: boolean;
 
-  tasks=null;
+  counter:number;
 
-    constructor(private _http: HttpClient) {
-      // this.getTasks();
-    }
+  allTask = [];
+
+  constructor(private _http: HttpClient) { }
 
   ngOnInit() {
-    this.counter =0; 
-    this.num = 7;
-    this.randNum = Math.floor( (Math.random()  * 10 ) + 1);
-    this.str = 'Hello Angular Developer!';
-    this.first_name = 'Alpha';
 
+    this.title = 'bpp.component.ts';
+    this.name = 'Alpha';    
+    this.randNum = Math.floor( (Math.random()  * 10 ) + 1);
     this.snacks = ["vanilla latte with skim milk", "brushed suede", "cookie"];
     this.loggedIn = true;
-
-    this.getTasks();
+    this.counter = 0;
+    this.allTask = [];
+    this.getAllTask();
 
   }
 
-  getTasks() {
-    let obs = this._http.get('/tasks');
-    obs.subscribe(data => { 
-      this.tasks = data['taskkey'];
+  getAllTask() {
+    let obs = this._http.get('/alltask');
+    obs.subscribe(data => {
+      this.allTask = data['allTask'];
     });
   }
 

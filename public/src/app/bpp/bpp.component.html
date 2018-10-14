@@ -1,17 +1,21 @@
 
-<h3>Value of num is: {{num}}</h3>
-<h3>Value of randNum is: {{randNum}}</h3>
-<h3>{{str}}</h3>
-<input type="text" [value]="first_name" />
+<div id='container-b'>
 
-<br><br>
+<h1> {{ title }} </h1>
+<a>Value of randNum is: {{randNum}}</a> &nbsp; &nbsp;  <input type="text" [value]="name" />
+
+<br>
 <p *ngIf="loggedIn">You are logged in!</p>
-<p *ngFor="let snack of snacks">{{snack}}</p>
+<a *ngFor="let snack of snacks">{{snack}}; &nbsp; &nbsp; </a>
 <p *ngIf="snacks.length < 3">You need more snacks.</p>
 
 <br><br>
-<a *ngFor="let task of tasks">{{task.title}} ; </a>
+<a *ngFor="let task of allTask">{{task.title}}; &nbsp; </a>
 
+<br><br>
 
-<p>{{counter}}</p>
-<button (click)='clickCounter()'>Click Counter</button>
+<button (click)='clickCounter()'>Click Counter</button> &nbsp; {{counter}} 
+
+<br><br>
+
+</div>

@@ -40,10 +40,16 @@ module.exports = {
         .catch(err=>{ res.json(err);  })
     },
 
-    tasks:(req,res)=>{
+    allTask:(req,res)=>{
         Task.find({})
-        .then(data=>{ res.json({taskkey:data}); })
-        .catch(err=>{ res.json({taskkey:data}); })
+        .then(data=>{ res.json({allTask:data}); })
+        .catch(err=>{ res.json({allTask:null}); })
+    },
+
+    oneTask:(req,res)=>{
+        Task.findById(req.params.id)
+        .then(data=>{ res.json({oneTask:data}); })
+        .catch(err=>{ res.json({oneTask:null}); })
     },
     
 };
