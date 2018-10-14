@@ -18,10 +18,10 @@ export class CppComponent implements OnInit {
     this.title = 'cpp.component.ts';
     this.allTask= null;
     this.oneTask= null;
-    this.getAllTask();
+    this.all_Task();
   }
 
-  getAllTask() {
+  all_Task() {
     let obs = this._http.get('/alltask');
     obs.subscribe(data => {
       this.allTask = data['allTask'];

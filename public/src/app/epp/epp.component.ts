@@ -13,7 +13,7 @@ export class EppComponent implements OnInit {
 
   newBody: any;
   newTask: any;
-  newErr: any;
+  newErr:  any;
 
   constructor(private _http: HttpClient) { }
 
@@ -24,18 +24,18 @@ export class EppComponent implements OnInit {
     this.newErr = null;
   }
 
-  onSubmit() {
+  onSubmitNew() {
     this.newTask = null;
     this.newErr = null;
-    this.createTask(this.newBody);
+    this.new_Task(this.newBody);
     this.newBody = { title: "", description: "" }
   }
 
-  createTask(task){
+  new_Task(task){
      let obs = this._http.post('/newtask', task);
      obs.subscribe(data => {
         this.newTask = data['newTask'];
-        this.newErr  = data['newErr'];
+        this.newErr  = data['errArr'];
      });
 
   }

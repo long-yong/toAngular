@@ -9,65 +9,104 @@ import { HttpClient } from '@angular/common/http';
 
 export class FppComponent implements OnInit {
 
-  allTask: any;
+  ID: number;
   editShow: boolean;
+  allTask: any;
 
   newBody: any;
-  newTask: any;
   newErr: any;
   
   editBody: any;
-  editTask: any;
   editErr: any;
 
   constructor(private _http: HttpClient) { }
 
-  clear_attr() {
-    this.newTask = null;
+  clearErr() {
     this.newErr = null;
-    this.editTask = null;
     this.editErr = null;
   }
 
-  ngOnInit() {
-    this.clear_attr();
-    this.allTask = null;
+  notExist(err:any) {
+    if(err==undefined) return true;
+    if(err==null) return true;
+    return false;
+  }
+
+  setId(id:number) {
+    this.ID = id;
     this.editShow = true;
+    if(id==0) this.editShow = true;
+  }
+
+  ngOnInit() {
+    this.setId(1);
+    this.clearErr();
     this.newBody = { title: "", description: "" }
     this.editBody = { title: "", description: "" }
+    this.getAllTask();
+  }
+
+  // all task
+
+  getAllTask() {
+    this.allTask = null;
+    let obs = this._http.get('/alltask');
+    obs.subscribe(data => {
+      this.allTask = data['allTask'];
+    });
   }
 
   // new task
 
-  onSubmit() {
-    this.clear_attr();
-    this.createTask(this.newBody);
+  onSubmitAdd() {
+    this.clearErr();
+    this.addTask(this.newBody);
     this.newBody = { title: "", description: "" }
+    this.editBody = { title: "", description: "" }
   }
 
-  createTask(body){
-     let obs = this._http.post('/newtask', body);
+  addTask(body){
+     let obs = this._http.post('/addtask', body);
      obs.subscribe(data => {
-        this.newTask = data['newTask'];
-        this.newErr  = data['newErr'];
+        this.newErr = data['errArr' ];
+        if(this.notExist(this.newErr))
+          this.allTask = data['allTask'];
      });
   }
 
   // edit task
 
-  onSubmit2() {
-    this.clear_attr();
-    this.updateTask(this.editBody);
+  onSubmitEdit(id:number) {
+    if(this.ID==0) return;
+    this.clearErr();
+    this.editTask(this.editBody);
+    this.newBody = { title: "", description: "" }
     this.editBody = { title: "", description: "" }
   }
 
-  updateTask(body){
-    let obs = this._http.post('/newtask', body);
+  editTask(body:any) {
+    let obs = this._http.post('/edittask/' + this.ID, body);
     obs.subscribe(data => {
-       this.editTask = data['newTask'];
-       this.editErr  = data['newErr'];
+      this.editErr  = data['errArr'];
+      if(this.notExist(this.editErr))
+          this.allTask = data['allTask'];
     });
+  }
 
- }
+  // click eidt
+  clickEdit(id:number) {
+
+  }
+
+  // click delete
+  clickDel(id:number) {
+    let obs = this._http.get('/deltask/' + id);
+    obs.subscribe(data => {
+      this.editErr  = data['errArr'];
+      if(this.notExist(this.editErr))
+          this.allTask = data['allTask'];
+    });
+    this.setId(0);
+  }
 
 }

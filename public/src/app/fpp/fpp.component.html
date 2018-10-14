@@ -9,7 +9,7 @@
       <a *ngFor='let err of editErr'> {{err}} <br></a>
    </div><br>
 
-  <form class='inline' (submit)="onSubmit()">
+  <form class='inline' (submit)="onSubmitAdd()">
     <table>
       <tr>
         <td>Title</td>
@@ -21,13 +21,13 @@
       </tr>
       <tr>
         <td></td>
-        <td><input type="submit" value="New Task" /></td>
+        <td><input type="submit" value="Add Task" /></td>
       </tr>
      
     </table>
   </form>
 
-  <form class='inline' (submit)="onSubmit2()" *ngIf='editShow'>
+  <form class='inline' (submit)="onSubmitEdit()" *ngIf='editShow'>
       <table>
         <tr>
           <td>Title</td>
@@ -42,11 +42,13 @@
           <td><input type="submit" value="Edit Task" /></td>
         </tr>       
       </table>
-    </form>
+    </form><br>
 
-    <p *ngFor='let task of allTask'>
-      {{task.title}}; &nbsp; {{task._id}} &nbsp; <button (click)='clickShow(task._id)'>Show</button> &nbsp;
-    </p>
+    <a *ngFor='let task of allTask'>
+      <br>{{task.title}}; &nbsp; {{task.description}} &nbsp; {{task.completed}} &nbsp;
+      <button (click)='clickEdit(task._id)'>Edit</button>
+      <button (click)='clickDel(task._id)'>Delete</button>
+    </a>
 
   <br><br>
 </div>
