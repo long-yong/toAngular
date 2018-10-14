@@ -5,11 +5,14 @@
     padding-left: 10px;
 }
 
-p {
-    color:blue;
-    font-size: 15px;
+.inline {
+    display:inline-block;
 }
 
 h1 {
     color:red;
+}
+
+p {
+    font-size: 15px;
 }

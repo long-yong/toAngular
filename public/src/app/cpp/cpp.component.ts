@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class CppComponent implements OnInit {
 
   title:string;
-
   allTask;
   oneTask;
 

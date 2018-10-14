@@ -1,0 +1,45 @@
+<div id='container-d'>
+
+<h1 class='inline'> {{ title }} &nbsp; </h1>
+<h2 class='inline'>Total Gold: {{totalGold}}</h2> <br>
+
+<div class='box'>
+  <p>Farm</p>
+  <p>Earn 2 - 5 Gold</p>
+  <p>&nbsp;</p>
+  <button (click)='clickAddGold("Farm",2,5)'>Farm!</button>
+</div>
+
+<div class='box'>
+    <p>Cave</p>
+  <p>Earn 5 - 10 Gold</p>
+  <p>&nbsp;</p>
+  <button (click)='clickAddGold("Cave",5,10)'>Cave!</button>
+</div>
+
+<div class='box'>
+    <p>House</p>
+  <p>Earn 7 - 15 Gold</p>
+  <p>&nbsp;</p>
+  <button (click)='clickAddGold("House",7,15)'>House!</button>
+</div>
+
+<div class='box'>
+    <p>Casino</p>
+  <p>Earn or Lost</p>
+  <p>Up to 100 Gold</p>
+  <button (click)='clickAddGold("Casino",-100,100)'>Casino!</button>
+</div>
+
+<br>
+
+<p *ngFor='let activity of activities'>
+    {{activity}};
+  </p>
+
+<br>
+
+</div>
+
+
+

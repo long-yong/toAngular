@@ -6,6 +6,10 @@
     padding-left: 150px;
 }
 
+.inline {
+    display:inline-block;
+}
+
 h1 {
     color:red;
 }

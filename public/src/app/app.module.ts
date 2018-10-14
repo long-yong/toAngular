@@ -8,11 +8,13 @@ import { AppService   } from './app.service';
 
 import { BppComponent } from './bpp/bpp.component';
 import { CppComponent } from './cpp/cpp.component';
+import { DppComponent } from './dpp/dpp.component';
 
 @NgModule({
   declarations: [ AppComponent,
                   BppComponent,
-                  CppComponent, ],
+                  CppComponent,
+                  DppComponent, ],
   imports:      [ BrowserModule, 
                   HttpClientModule, ],
   providers:    [ AppService, ],
