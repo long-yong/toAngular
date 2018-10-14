@@ -4,4 +4,21 @@
   <h1> {{ title }} </h1> 
 
 
+  <form (submit)="onSubmit()">
+    
+    <p> {{ formData | json }} </p>
+
+    <p *ngIf='newData'> New Data: {{newData._id}}; {{newData.title}}; {{newData.description}}; {{newData.completed}}; </p>
+
+    <p *ngFor='let err of newErr'> {{err}} </p>
+
+    Title: <input type="text" name="formData.title" [(ngModel)]="formData.title"/> <br><br>
+
+    Description: <input type="text" name="formData.description" [(ngModel)]="formData.description" /> <br><br>
+
+    <input type="submit" value="New Data" />
+
+  </form>
+
+  <br><br>
 </div>

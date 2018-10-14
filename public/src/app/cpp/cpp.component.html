@@ -1,10 +1,10 @@
 <div id='container-c'>
 
   
-<h1> {{ title }} </h1> 
+<h1 class='inline'> {{ title }} </h1>
 
 <p *ngFor='let task of allTask'>
-  {{task.title}}; &nbsp; {{task._id}}; <button (click)='clickShow(task._id)'>Show</button> &nbsp;
+  {{task.title}}; &nbsp; {{task._id}} &nbsp; <button (click)='clickShow(task._id)'>Show</button> &nbsp;
 </p>
 
 

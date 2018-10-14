@@ -14,7 +14,8 @@ module.exports = function(app) {
 
     app.use(bp.json());
     
-    // routes
+
+    // for ejs
 
     app.get ('/getall',                  controller.getall);
 
@@ -26,11 +27,21 @@ module.exports = function(app) {
 
     app.get('/delete/:id',               controller.delete);
 
+    app.get('/clear',                    controller.clear);
+
+
+    // for api
+
     app.get ('/completed',               controller.completed);
+
+
+    // for angular
 
     app.get('/alltask',                  controller.allTask);
 
     app.get('/onetask/:id',              controller.oneTask);
+
+    app.post('/newtask',                 controller.newTask);
 
     return app;
 }

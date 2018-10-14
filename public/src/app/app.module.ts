@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppService   } from './app.service';
@@ -17,9 +18,14 @@ import { EppComponent } from './epp/epp.component';
                   CppComponent,
                   DppComponent,
                   EppComponent, ],
+
   imports:      [ BrowserModule, 
-                  HttpClientModule, ],
+                  HttpClientModule, 
+                  FormsModule,
+                ],
+
   providers:    [ AppService, ],
+  
   bootstrap:    [ AppComponent, ]
 })
 
