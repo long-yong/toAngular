@@ -11,30 +11,30 @@ export class EppComponent implements OnInit {
 
   title:string;
 
-  formData: any;
-  newData: any;
+  formBody: any;
+  newTask: any;
   newErr: any;
 
   constructor(private _http: HttpClient) { }
 
   ngOnInit() {
     this.title = 'epp.component.ts';
-    this.formData = { title: "", description: "" }
-    this.newData = null;
+    this.formBody = { title: "", description: "" }
+    this.newTask = null;
     this.newErr = null;
   }
 
   onSubmit() {
-    this.newData = null;
+    this.newTask = null;
     this.newErr = null;
-    this.addTask(this.formData);
-    this.formData = { title: "", description: "" }
+    this.addTask(this.formBody);
+    this.formBody = { title: "", description: "" }
   }
 
   addTask(task){
      let obs = this._http.post('/newtask', task);
      obs.subscribe(data => {
-        this.newData = data['newData'];
+        this.newTask = data['newTask'];
         this.newErr  = data['newErr'];
      });
 

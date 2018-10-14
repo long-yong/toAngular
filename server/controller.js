@@ -72,7 +72,7 @@ module.exports = {
 
     newTask:(req,res)=>{
         Task.create({title:req.body.title,description:req.body.description})
-        .then(data=>{ res.json({newData:data}); })
+        .then(data=>{ res.json({newTask:data}); })
         .catch(err=>{ res.json({newErr:get_err_arr(err)}); })
     },
     
