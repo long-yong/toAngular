@@ -12,7 +12,7 @@ module.exports = {
 
     // for ejs
 
-     getall:(req,res)=>{
+    getall:(req,res)=>{
         Task.find({})
         .then(data=>{ res.render('index', {allTasks:data}); })
         .catch(err=>{ res.render('index', {allTasks:['Database find error!']}); })
