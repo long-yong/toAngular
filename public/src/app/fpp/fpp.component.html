@@ -1,0 +1,52 @@
+<div id='container-f'>
+  <h2>New Task</h2> <h2 *ngIf='editShow'>Edit Task</h2> <br>
+
+  <div class='box'> 
+     <a *ngFor='let err of newErr'> {{err}} <br></a>
+  </div>
+
+  <div class='box'>
+      <a *ngFor='let err of editErr'> {{err}} <br></a>
+   </div><br>
+
+  <form class='inline' (submit)="onSubmit()">
+    <table>
+      <tr>
+        <td>Title</td>
+        <td><input type="text" name="newBody.title" [(ngModel)]="newBody.title"/></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><input type="text" name="newBody.description" [(ngModel)]="newBody.description" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="New Task" /></td>
+      </tr>
+     
+    </table>
+  </form>
+
+  <form class='inline' (submit)="onSubmit2()" *ngIf='editShow'>
+      <table>
+        <tr>
+          <td>Title</td>
+          <td><input type="text" name="editBody.title" [(ngModel)]="editBody.title"/></td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td><input type="text" name="editBody.description" [(ngModel)]="editBody.description" /></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" value="Edit Task" /></td>
+        </tr>       
+      </table>
+    </form>
+
+    <p *ngFor='let task of allTask'>
+      {{task.title}}; &nbsp; {{task._id}} &nbsp; <button (click)='clickShow(task._id)'>Show</button> &nbsp;
+    </p>
+
+  <br><br>
+</div>

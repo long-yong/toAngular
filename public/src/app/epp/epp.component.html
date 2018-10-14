@@ -6,17 +6,17 @@
 
   <form (submit)="onSubmit()">
     
-    <p> {{ formBody | json }} </p>
+    <p> {{ newBody | json }} </p>
 
     <p *ngIf='newTask'> New Task: {{newTask._id}}; {{newTask.title}}; {{newTask.description}}; {{newTask.completed}}; </p>
 
     <p *ngFor='let err of newErr'> {{err}} </p>
 
-    Title: <input type="text" name="formBody.title" [(ngModel)]="formBody.title"/> <br><br>
+    Title: <input type="text" name="newBody.title" [(ngModel)]="newBody.title"/> <br><br>
 
-    Description: <input type="text" name="formBody.description" [(ngModel)]="formBody.description" /> <br><br>
+    Description: <input type="text" name="newBody.description" [(ngModel)]="newBody.description" /> <br><br>
 
-    <input type="submit" value="New Data" />
+    <input type="submit" value="New Task" />
 
   </form>
 

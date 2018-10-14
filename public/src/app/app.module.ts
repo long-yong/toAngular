@@ -11,13 +11,15 @@ import { BppComponent } from './bpp/bpp.component';
 import { CppComponent } from './cpp/cpp.component';
 import { DppComponent } from './dpp/dpp.component';
 import { EppComponent } from './epp/epp.component';
+import { FppComponent } from './fpp/fpp.component';
 
 @NgModule({
   declarations: [ AppComponent,
                   BppComponent,
                   CppComponent,
                   DppComponent,
-                  EppComponent, ],
+                  EppComponent,
+                  FppComponent, ],
 
   imports:      [ BrowserModule, 
                   HttpClientModule, 
