@@ -8,14 +8,14 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class FppComponent implements OnInit {
-
-  ID: number;
-  editShow: boolean;
+  
   allTask: any;
 
   newBody: any;
   newErr: any;
-  
+
+  editId: number;
+  editShow: boolean;
   editBody: any;
   editErr: any;
 
@@ -33,13 +33,13 @@ export class FppComponent implements OnInit {
   }
 
   setId(id:number) {
-    this.ID = id;
+    this.editId = id;
     this.editShow = true;
-    if(id==0) this.editShow = true;
+    if(id==0) this.editShow = false;
   }
 
   ngOnInit() {
-    this.setId(1);
+    this.setId(0);
     this.clearErr();
     this.newBody = { title: "", description: "" }
     this.editBody = { title: "", description: "" }
@@ -47,7 +47,6 @@ export class FppComponent implements OnInit {
   }
 
   // all task
-
   getAllTask() {
     this.allTask = null;
     let obs = this._http.get('/alltask');
@@ -56,15 +55,13 @@ export class FppComponent implements OnInit {
     });
   }
 
-  // new task
-
+  // add task
   onSubmitAdd() {
     this.clearErr();
     this.addTask(this.newBody);
     this.newBody = { title: "", description: "" }
     this.editBody = { title: "", description: "" }
   }
-
   addTask(body){
      let obs = this._http.post('/addtask', body);
      obs.subscribe(data => {
@@ -72,20 +69,19 @@ export class FppComponent implements OnInit {
         if(this.notExist(this.newErr))
           this.allTask = data['allTask'];
      });
+     this.setId(0);
   }
 
   // edit task
-
   onSubmitEdit(id:number) {
-    if(this.ID==0) return;
+    if(this.editId==0) return;
     this.clearErr();
     this.editTask(this.editBody);
     this.newBody = { title: "", description: "" }
     this.editBody = { title: "", description: "" }
-  }
-
+  }  
   editTask(body:any) {
-    let obs = this._http.post('/edittask/' + this.ID, body);
+    let obs = this._http.post('/edittask/' + this.editId,body);
     obs.subscribe(data => {
       this.editErr  = data['errArr'];
       if(this.notExist(this.editErr))
@@ -93,13 +89,20 @@ export class FppComponent implements OnInit {
     });
   }
 
-  // click eidt
+  // click eidt btn
   clickEdit(id:number) {
-
+    this.clearErr();
+    let obs = this._http.get('/onetask/'+id);
+     obs.subscribe(data => {
+       let task = data['oneTask'];
+       if(task!=null) this.editBody=task;
+     });
+     this.setId(id);
   }
 
-  // click delete
+  // click delete btn
   clickDel(id:number) {
+    this.clearErr();
     let obs = this._http.get('/deltask/' + id);
     obs.subscribe(data => {
       this.editErr  = data['errArr'];
