@@ -47,5 +47,5 @@ export class BppComponent implements OnInit {
   clickCounter(){
     this.counter++;
   }
-
+  
 }   

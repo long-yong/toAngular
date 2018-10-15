@@ -1,0 +1,20 @@
+
+.box21 {
+    width:330px;
+    height:200px;
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+}
+.box22 {
+    width:350px;
+    height:200px;
+    padding-left: 15px;
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+}
+
+h2, h3 {
+    color:red;
+}

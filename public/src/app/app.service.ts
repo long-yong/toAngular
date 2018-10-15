@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
 export class AppService {
 
     constructor(private _http: HttpClient){
-        // this.getTasks();
+        this.getTasks();
         this.getPokemon();
     }
 
     getTasks(){
-        let obs = this._http.get('/tasks');
-        obs.subscribe(data => console.log("app.service got tasks:", data));
+        let obs = this._http.get('/allTask');
+        obs.subscribe(data => console.log("app.service got tasks:", data['allTask']));
     }
 
     getPokemon(){

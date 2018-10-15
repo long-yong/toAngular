@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BppComponent } from './bpp.component';
+import { HppComponent } from './hpp.component';
 
-describe('BppComponent', () => {
-  let component: BppComponent;
-  let fixture: ComponentFixture<BppComponent>;
+describe('HppComponent', () => {
+  let component: HppComponent;
+  let fixture: ComponentFixture<HppComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BppComponent ]
+      declarations: [ HppComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BppComponent);
+    fixture = TestBed.createComponent(HppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,5 +22,4 @@ describe('BppComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
 });

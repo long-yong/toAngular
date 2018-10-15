@@ -1,0 +1,56 @@
+<div id='container-h'>
+
+  <h1>Rate My Cake</h1>
+  
+  <div class='box11'>
+    <h4>Submit a cake to be rated!</h4>
+    <form (submit)="onSubmitAdd()">
+        
+        <a *ngFor='let err of newErr'> {{err}} <br></a>
+    
+        Title:<br>
+        <input type="text" name="newBody.title" [(ngModel)]="newBody.title"/> <br>
+    
+        Description:<br>
+        <input type="text" name="newBody.description" [(ngModel)]="newBody.description" /> <br>
+    
+        <input type="submit" value="Add Task" />
+
+      </form>
+
+  </div>
+
+  <div class='box12'>
+      
+    <div *ngFor='let task of allTask'>
+
+      <div class='box121'>
+          <img ref='' src={{curUrl}} width="190" height="110" (click)="clickImg(task)" />
+      </div>
+      
+      <div class='box122'>
+        <br>
+        <form (submit)="onSubmitRate(task.id)">
+          <select name="rate">
+            <option value='1 star'>1 star</option>
+            <option value='2 stars'>2 stars</option>
+            <option value='3 stars'>3 stars</option>
+            <option value='4 stars'>4 stars</option>
+            <option value='5 stars'>5 stars</option>
+          </select>
+          <textarea name="content" placeholder='Comment'></textarea>   
+          <input type="submit" value="Rate!" />
+        </form>
+      </div><br>
+      
+
+    </div>
+
+  </div><br>
+
+  <div>
+    <app-cake *ngIf="oneTask" [taskToShow]="oneTask"></app-cake>
+  </div>
+
+  <br><br>
+</div>>
