@@ -1,0 +1,19 @@
+<div id='container-g'>
+
+  <h1>gpp.component.ts(nested task)</h1>
+
+  <button (click)="getAllTask()">Get all tasks</button>
+  
+  <div *ngFor="let task of allTask">
+      <a>{{task.title}}</a> &nbsp; &nbsp; 
+      <button (click)="taskToShow(task)">Show</button>  <!-- In this example, the taskToShow method is saving the selected task as selectedTask -->
+  </div>
+
+  <app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task>
+
+  <br> <br>
+
+</div>
+
+
+

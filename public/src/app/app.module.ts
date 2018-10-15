@@ -12,6 +12,8 @@ import { CppComponent } from './cpp/cpp.component';
 import { DppComponent } from './dpp/dpp.component';
 import { EppComponent } from './epp/epp.component';
 import { FppComponent } from './fpp/fpp.component';
+import { GppComponent } from './gpp/gpp.component';
+import { TaskComponent } from './gpp/task/task.component';
 
 @NgModule({
   declarations: [ AppComponent,
@@ -19,7 +21,9 @@ import { FppComponent } from './fpp/fpp.component';
                   CppComponent,
                   DppComponent,
                   EppComponent,
-                  FppComponent, ],
+                  FppComponent,
+                  GppComponent,
+                  TaskComponent, ],
 
   imports:      [ BrowserModule, 
                   HttpClientModule, 
