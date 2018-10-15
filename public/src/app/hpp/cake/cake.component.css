@@ -2,7 +2,7 @@
 .box21 {
     width:330px;
     height:200px;
-    border: 1px solid black;
+    border: 1px solid white;
     display: inline-block;
     vertical-align: top;
 }
@@ -10,7 +10,7 @@
     width:350px;
     height:200px;
     padding-left: 15px;
-    border: 1px solid black;
+    border: 1px solid white;
     display: inline-block;
     vertical-align: top;
 }
