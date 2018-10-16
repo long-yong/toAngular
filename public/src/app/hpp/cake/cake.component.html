@@ -1,12 +1,12 @@
-<br>
-
-<h3>{{taskToShow.title}}</h3>
+<h3>Baked by {{cakeToShow.baker}}</h3>
 
 <div class='box21'>
     <img ref='' src={{curUrl}} width="330" height="200" />
 </div>
 
 <div class='box22'>
-    <p>{{taskToShow.title}}</p>
-    <p>{{taskToShow.description}}</p>
+    <div *ngFor='let comment of cakeToShow.comments'>
+            {{comment[0]}} Stars:<br>
+            {{comment[0]}} <br><br>
+    </div>
 </div>

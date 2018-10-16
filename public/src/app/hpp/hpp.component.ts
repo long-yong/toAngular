@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class HppComponent implements OnInit {
 
-  allTask: any;
-  oneTask: any;
+  allCake: any;
+  oneCake: any;
 
   newBody: any;
   newErr:  any;
@@ -30,46 +30,56 @@ export class HppComponent implements OnInit {
     this.newBody = { title: "", description: "" }
     this.rateBody = { rate: "1 star", content: "" }
     this.newErr = null;
-    this.getAllTask();
+    this.getAllCake();
     this.curUrl='http://oi41.tinypic.com/1q0hw9.jpg';
   }
 
-  getAllTask() {
-    this.oneTask = null;
-    this.allTask = null;
-    let obs = this._http.get('/alltask');
+  getAllCake() {
+    this.oneCake = null;
+    this.allCake = null;
+    let obs = this._http.get('/allcake');
     obs.subscribe(data => {
-      this.allTask = data['allTask'];
+      this.allCake = data['allCake'];
     });
   }
 
   onSubmitAdd() {
     this.newErr = null;
-    this.addTask(this.newBody);
+    this.addCake(this.newBody);
     this.newBody = { title: "", description: "" }
     
   }
 
-  addTask(body){
-    let obs = this._http.post('/addtask', body);
+  addCake(body){
+    let obs = this._http.post('/addcake', body);
     obs.subscribe(data => {
        this.newErr = data['errArr' ];
        if(this.notExist(this.newErr)) {
-         this.allTask = data['allTask'];
-         this.oneTask = null;
+         this.oneCake = null;
+         this.allCake = data['allCake'];
        }
     });
   }
 
-  onSubmitRate(id:number) {
-    let obs = this._http.post('/addcomment/'+id, this.rateBody);
+  clickImg(cake:any) {
+    this.oneCake = cake;
+  }
+
+  onSubmitCmt(id:number) {
+    let obs = this._http.post('/addcmt/'+id, this.rateBody);
      obs.subscribe(data => {
-        this.oneTask = data['oneTask'];
+        this.oneCake = data['oneCake'];
      });
   }
 
-  clickImg(task:any) {
-    this.oneTask = task;
+  clickDel(id:number) {
+    console.log('1-----')
+    let obs = this._http.get('/delcake/'+id);
+     obs.subscribe(data => {
+      console.log('2-----')
+        this.oneCake = null;
+        this.allCake = data['allCake'];
+     });
   }
 
 }

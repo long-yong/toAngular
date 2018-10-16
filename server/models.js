@@ -6,57 +6,49 @@ mongoose.connect('mongodb://localhost/test', {useNewUrlParser:true},
                  (errs)=>errs ? console.log(errs):console.log('db is good to go'));
 
 var TaskSchema = new mongoose.Schema({
-
-    title:{
+    title:{ 
         type:String,
-        required:true,
+        required: [true, "Title is required."],
         minlength:2
     },
-
     description:{
         type:String,
         required:true,
         minlength:2
     },
-
     completed:{
         type:Boolean,
         default: false,
     },
-
 }, {timestamps:false});
 
 
-var BookSchema = new mongoose.Schema({
+const CommentSchema = new mongoose.Schema({
+    star: {
+        type: String, 
+        required: true,
+    },
+    content:{
+        type: String, 
+        required: true,
+    },
+}, {timestamps: true})
 
-    author:{
+var CakeSchema = new mongoose.Schema({
+    baker:{
         type:String,
         required:true,
-        minlength:2
     },
-
-    country:{
-        type:String,
-    },
-
-    birthday:{
-        type:String,
-    },
-
-    bookname: {
+    url:{
         type:String,
         required:true,
-        minlength:2
     },
-
-    published: {
-        type:String,
-    }
-
+    comments: [CommentSchema]
 }, {timestamps:true});
 
 module.exports = {
     Task: mongoose.model('Task', TaskSchema),
-    Book: mongoose.model('Book', BookSchema),
+    Cake: mongoose.model('Cake', CakeSchema),
+    Comment: mongoose.model('Commnet', CommentSchema)
 }
 

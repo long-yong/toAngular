@@ -13,7 +13,7 @@ module.exports = function(app) {
     app.use(bp.urlencoded({extended:true}));
 
     app.use(bp.json());
-    
+
 
     // ejs
 
@@ -54,6 +54,16 @@ module.exports = function(app) {
     app.post('/edittask/:id',            controller.editTask);
 
     app.get('/deltask/:id',              controller.delTask);
+
+    // cake
+
+    app.get('/allcake',                  controller.allCake);
+
+    app.post('/addcake',                 controller.addCake);
+
+    app.get('/delcake/:id',              controller.delCake);
+
+    app.post('/addcomment/:id',          controller.addComment);
 
     return app;
 }

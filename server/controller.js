@@ -1,6 +1,6 @@
 // controller.js
 
-const { Task, Book, } = require('./models')
+const { Task, Cake, Comment} = require('./models')
 
 function errArr(err) {
     arr = [];
@@ -98,5 +98,32 @@ module.exports = {
         .catch(err=>{ res.json({errArr:errArr(err)}); })
     },
 
-    
+
+    // cake
+    allCake:(req,res)=>{
+        Cake.find({})
+        .then(data=>{ res.json({allCake:data}); })
+        .catch(err=>{ res.json({allCake:null}); })
+    },
+
+    addCake:(req,res)=>{
+        Cake.create({ baker:req.body.baker,url:req.body.url })
+        .then(data=>{ Cake.find({}).then(data=>{ res.json({allCake:data}); }) })
+        .catch(err=>{ res.json({errArr:errArr(err)}); })
+    },
+
+    delCake:(req,res)=>{
+        Cake.findByIdAndDelete(req.params.id)
+        .then(data=>{ Cake.find({}).then(data=>{ res.json({allCake:data}); }) })
+    },
+
+    addComment:(req,res)=>{
+        Comment.create(req.body,(err,data)=>{
+            Cake.findOneAndUpdate({_id:req.params.id},{$push:{comments:data}},(err)=>{
+                Task.findById(req.params.id)
+                .then(data=>{ res.json({oneTask:data}); });
+            });
+        });
+    }
+
 };

@@ -9,7 +9,7 @@ export class CakeComponent implements OnInit {
 
   curUrl:string;
 
-  @Input() taskToShow: any; 
+  @Input() cakeToShow: any; 
 
   constructor() { }
 

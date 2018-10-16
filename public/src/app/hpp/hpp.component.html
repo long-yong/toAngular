@@ -8,13 +8,13 @@
         
         <a *ngFor='let err of newErr'> {{err}} <br></a>
     
-        Title:<br>
-        <input type="text" name="newBody.title" [(ngModel)]="newBody.title"/> <br>
+        Baker:<br>
+        <input type="text" name="newBody.baker" [(ngModel)]="newBody.baker"/> <br>
     
-        Description:<br>
-        <input type="text" name="newBody.description" [(ngModel)]="newBody.description" /> <br>
+        image url:<br>
+        <input type="text" name="newBody.url" [(ngModel)]="newBody.url" /> <br>
     
-        <input type="submit" value="Add Task" />
+        <input type="submit" value="Add Cake" />
 
       </form>
 
@@ -22,24 +22,25 @@
 
   <div class='box12'>
       
-    <div *ngFor='let task of allTask'>
+    <div *ngFor='let cake of allCake'>
 
       <div class='box121'>
-          <img ref='' src={{curUrl}} width="190" height="110" (click)="clickImg(task)" />
+          <img ref='' src={{curUrl}} width="190" height="110" (click)="clickImg(cake)" />
       </div>
       
       <div class='box122'>
         <br>
-        <form (submit)="onSubmitRate(task.id)">
-          <select name="rate">
+        <form (submit)="onSubmitCmt(cake._id)">
+          <select name="star">
             <option value='1 star'>1 star</option>
             <option value='2 stars'>2 stars</option>
             <option value='3 stars'>3 stars</option>
             <option value='4 stars'>4 stars</option>
             <option value='5 stars'>5 stars</option>
           </select>
-          <textarea name="content" placeholder='Comment'></textarea>   
-          <input type="submit" value="Rate!" />
+          <textarea name="content" placeholder='Comment'></textarea>
+          <input type="submit" value="Rate!" /> &nbsp; &nbsp; 
+          <a (click)="clickDel(cake._id)">Delete cake</a>   
         </form>
       </div><br>
       
@@ -49,7 +50,7 @@
   </div>
 
   <div>
-    <app-cake *ngIf="oneTask" [taskToShow]="oneTask"></app-cake>
+    <app-cake *ngIf="oneCake" [cakeToShow]="oneCake"></app-cake>
   </div>
 
   <br>

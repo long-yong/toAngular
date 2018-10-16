@@ -89,7 +89,7 @@ export class FppComponent implements OnInit {
     });
   }
 
-  // click eidt btn
+  // click edit btn
   clickEdit(id:number) {
     this.clearErr();
     let obs = this._http.get('/onetask/'+id);
