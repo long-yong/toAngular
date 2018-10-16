@@ -5,16 +5,14 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './cake.component.html',
   styleUrls: ['./cake.component.css']
 })
-export class CakeComponent implements OnInit {
 
-  curUrl:string;
+export class CakeComponent implements OnInit {
 
   @Input() cakeToShow: any; 
 
   constructor() { }
 
   ngOnInit() {
-    this.curUrl='http://oi41.tinypic.com/1q0hw9.jpg';
   }
 
 }

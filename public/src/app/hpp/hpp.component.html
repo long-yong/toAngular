@@ -25,7 +25,7 @@
     <div *ngFor='let cake of allCake'>
 
       <div class='box121'>
-          <img ref='' src={{curUrl}} width="200" height="120" (click)="clickImg(cake)" />
+          <img ref='' src={{cake.url}} width="200" height="120" (click)="clickImg(cake)" />
       </div>
       
       <div class='box122'>

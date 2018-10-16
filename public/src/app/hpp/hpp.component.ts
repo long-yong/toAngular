@@ -11,12 +11,9 @@ export class HppComponent implements OnInit {
 
   allCake: any;
   oneCake: any;
-
   newBody: any;
-  newErr:  any;
-  
+  newErr:  any;  
   cmtBody: any;
-  curUrl: string;
 
   constructor(private _http: HttpClient) { }
 
@@ -40,12 +37,19 @@ export class HppComponent implements OnInit {
     this.cmtBody = { star: "3 stars", content: "" }
   }
 
+  getAvgStar(){
+    if(this.oneCake==null) return;
+    let sum = 0, N = 0, cmts = this.oneCake.comments;
+    for(let i in cmts) { N++; sum+=parseInt(cmts[i].star.charAt(0)); }
+    if(N>1) { sum/=N; sum=Math.floor(sum*100)/100; }
+    this.oneCake.avgStar = sum;
+  }
+
   ngOnInit() {
     this.clearErr();
     this.clearBody();
     this.clearCake();
     this.getAllCake();
-    this.curUrl='http://oi41.tinypic.com/1q0hw9.jpg';
   }
 
   getAllCake() {
@@ -76,14 +80,16 @@ export class HppComponent implements OnInit {
     let obs = this._http.post('/addcmt/'+id, this.cmtBody);
     obs.subscribe(data => {
       this.allCake = data['allCake'];
-      this.oneCake = data['oneCake'];
+      this.oneCake = data['oneCake']; 
+      this.getAvgStar();
     });
     this.clearBody();
     this.clearErr();
   }
 
   clickImg(cake:any) {
-    this.oneCake = cake;
+    this.oneCake = cake; 
+    this.getAvgStar();
     this.clearBody();
     this.clearErr();
   }  
