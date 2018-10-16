@@ -23,14 +23,12 @@ var TaskSchema = new mongoose.Schema({
 }, {timestamps:false});
 
 
-const CommentSchema = new mongoose.Schema({
+const CmtSchema = new mongoose.Schema({
     star: {
-        type: String, 
-        required: true,
+        type: String,
     },
     content:{
         type: String, 
-        required: true,
     },
 }, {timestamps: true})
 
@@ -43,12 +41,12 @@ var CakeSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    comments: [CommentSchema]
+    comments: [CmtSchema]
 }, {timestamps:true});
 
 module.exports = {
     Task: mongoose.model('Task', TaskSchema),
     Cake: mongoose.model('Cake', CakeSchema),
-    Comment: mongoose.model('Commnet', CommentSchema)
+    Cmt:  mongoose.model('Cmt',  CmtSchema)
 }
 

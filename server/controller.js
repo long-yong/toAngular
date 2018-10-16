@@ -1,6 +1,6 @@
 // controller.js
 
-const { Task, Cake, Comment} = require('./models')
+const { Task, Cake, Cmt} = require('./models')
 
 function errArr(err) {
     arr = [];
@@ -117,11 +117,18 @@ module.exports = {
         .then(data=>{ Cake.find({}).then(data=>{ res.json({allCake:data}); }) })
     },
 
-    addComment:(req,res)=>{
-        Comment.create(req.body,(err,data)=>{
-            Cake.findOneAndUpdate({_id:req.params.id},{$push:{comments:data}},(err)=>{
-                Task.findById(req.params.id)
-                .then(data=>{ res.json({oneTask:data}); });
+    addCmt:(req,res)=>{
+        Cmt.create(req.body,(err,data)=>{
+            Cake.findByIdAndUpdate(req.params.id,{$push:{comments:data}},(err)=>{
+                Cake.find({})
+                .then(data=>{
+                    let allCake = data;
+                    Cake.findById(req.params.id)
+                    .then(data=>{
+                        let oneCake = data;
+                        res.json({allCake:allCake,oneCake:oneCake});
+                    })
+                })
             });
         });
     }

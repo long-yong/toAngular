@@ -5,8 +5,7 @@
 </div>
 
 <div class='box22'>
-    <div *ngFor='let comment of cakeToShow.comments'>
-            {{comment[0]}} Stars:<br>
-            {{comment[0]}} <br><br>
+    <div *ngFor='let cmt of cakeToShow.comments'>
+        <p>{{cmt.star}}, &nbsp; {{cmt.content}}</p>
     </div>
 </div>

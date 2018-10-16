@@ -15,7 +15,7 @@ export class HppComponent implements OnInit {
   newBody: any;
   newErr:  any;
   
-  rateBody: any;
+  cmtBody: any;
   curUrl: string;
 
   constructor(private _http: HttpClient) { }
@@ -26,17 +26,29 @@ export class HppComponent implements OnInit {
     return false;
   }
 
-  ngOnInit() {
-    this.newBody = { title: "", description: "" }
-    this.rateBody = { rate: "1 star", content: "" }
+  clearErr() {
     this.newErr = null;
+  }
+
+  clearCake(){
+    this.oneCake = null;
+    this.allCake = null;
+  } 
+
+  clearBody() {
+    this.newBody = { title: "", description: "" }
+    this.cmtBody = { star: "3 stars", content: "" }
+  }
+
+  ngOnInit() {
+    this.clearErr();
+    this.clearBody();
+    this.clearCake();
     this.getAllCake();
     this.curUrl='http://oi41.tinypic.com/1q0hw9.jpg';
   }
 
   getAllCake() {
-    this.oneCake = null;
-    this.allCake = null;
     let obs = this._http.get('/allcake');
     obs.subscribe(data => {
       this.allCake = data['allCake'];
@@ -44,10 +56,9 @@ export class HppComponent implements OnInit {
   }
 
   onSubmitAdd() {
-    this.newErr = null;
+    this.clearErr();
     this.addCake(this.newBody);
-    this.newBody = { title: "", description: "" }
-    
+    this.clearBody();
   }
 
   addCake(body){
@@ -61,25 +72,30 @@ export class HppComponent implements OnInit {
     });
   }
 
+  onSubmitCmt(id:number) {
+    let obs = this._http.post('/addcmt/'+id, this.cmtBody);
+    obs.subscribe(data => {
+      this.allCake = data['allCake'];
+      this.oneCake = data['oneCake'];
+    });
+    this.clearBody();
+    this.clearErr();
+  }
+
   clickImg(cake:any) {
     this.oneCake = cake;
-  }
-
-  onSubmitCmt(id:number) {
-    let obs = this._http.post('/addcmt/'+id, this.rateBody);
-     obs.subscribe(data => {
-        this.oneCake = data['oneCake'];
-     });
-  }
+    this.clearBody();
+    this.clearErr();
+  }  
 
   clickDel(id:number) {
-    console.log('1-----')
     let obs = this._http.get('/delcake/'+id);
-     obs.subscribe(data => {
-      console.log('2-----')
+      obs.subscribe(data => {
         this.oneCake = null;
         this.allCake = data['allCake'];
-     });
+      });   
+    this.clearBody();
+    this.clearErr(); 
   }
 
 }

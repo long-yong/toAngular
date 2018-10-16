@@ -63,7 +63,7 @@ module.exports = function(app) {
 
     app.get('/delcake/:id',              controller.delCake);
 
-    app.post('/addcomment/:id',          controller.addComment);
+    app.post('/addcmt/:id',              controller.addCmt);
 
     return app;
 }
