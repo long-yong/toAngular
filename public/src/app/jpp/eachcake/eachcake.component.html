@@ -1,0 +1,17 @@
+
+<div class='box122'>
+  
+  <form (submit)="onSubmitCmt(eachCake._id)">
+    <select name="cmtBody.star" [(ngModel)]="cmtBody.star">
+      <option value='1 star'>1 star</option>
+      <option value='2 stars'>2 stars</option>
+      <option value='3 stars'>3 stars</option>
+      <option value='4 stars'>4 stars</option>
+      <option value='5 stars'>5 stars</option>
+    </select>
+    <textarea name="cmtBody.content" [(ngModel)]="cmtBody.content" placeholder='Comment'></textarea>
+    <input type="submit" value="Rate!" /> &nbsp; &nbsp;
+    <a (click)="clickDel(eachCake._id)">Delete cake</a>
+  </form>
+
+</div>

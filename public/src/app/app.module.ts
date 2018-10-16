@@ -16,6 +16,9 @@ import { GppComponent } from './gpp/gpp.component';
 import { TaskComponent } from './gpp/task/task.component';
 import { HppComponent } from './hpp/hpp.component';
 import { CakeComponent } from './hpp/cake/cake.component';
+import { JppComponent } from './jpp/jpp.component';
+import { EachcakeComponent } from './jpp/eachcake/eachcake.component';
+import { OnecakeComponent } from './jpp/onecake/onecake.component';
 
 @NgModule({
   declarations: [ AppComponent,
@@ -27,7 +30,10 @@ import { CakeComponent } from './hpp/cake/cake.component';
                   GppComponent,
                   TaskComponent,
                   HppComponent,
-                  CakeComponent, ],
+                  CakeComponent,
+                  JppComponent,
+                  EachcakeComponent,
+                  OnecakeComponent, ],
 
   imports:      [ BrowserModule, 
                   HttpClientModule, 

@@ -92,7 +92,7 @@ export class HppComponent implements OnInit {
     this.getAvgStar();
     this.clearBody();
     this.clearErr();
-  }  
+  }
 
   clickDel(id:number) {
     let obs = this._http.get('/delcake/'+id);

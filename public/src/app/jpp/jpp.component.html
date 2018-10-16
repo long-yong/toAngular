@@ -1,0 +1,42 @@
+<div id='container-j'>
+
+    <h1>jpp: Rate My Cake</h1>
+
+    <div class='box11'>
+        <h4>Submit a cake to be rated!</h4>
+        <form (submit)="onSubmitAdd()">
+            
+            <a *ngFor='let err of newErr'> {{err}} <br></a>
+            
+            Baker:<br>
+            <input type="text" name="newBody.baker" [(ngModel)]="newBody.baker"/> <br>
+        
+            image url:<br>
+            <input type="text" name="newBody.url" [(ngModel)]="newBody.url" /> <br>
+        
+            <input type="submit" value="Add Cake" />
+    
+          </form>
+    
+      </div>
+
+      <div class='box12'>
+      
+        <div *ngFor='let cake of allCake'>
+    
+            <img ref='' src={{cake.url}} (click)="clickImg(cake)" />
+            <app-eachcake [eachCake]="cake"></app-eachcake>
+            
+    
+        </div>
+    
+      </div>
+
+
+    <div>
+        <app-onecake *ngIf="curCake" [oneCake]="curCake"></app-onecake>
+    </div>
+
+
+    <br><br>
+</div>

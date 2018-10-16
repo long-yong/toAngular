@@ -8,7 +8,15 @@ import { AppService } from './app.service';
 })
 
 export class AppComponent {
+  
   title = 'app.component.ts';
+  
   constructor(private _appService: AppService){};
+
+
+  foo() {
+    this._appService.getTasks();
+  }
+
 }
 
