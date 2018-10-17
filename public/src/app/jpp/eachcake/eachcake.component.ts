@@ -13,35 +13,31 @@ export class EachcakeComponent implements OnInit {
 
   @Input() curCake: any;
   @Output() _eventEmitter = new EventEmitter();
+  emitDataToParent(data:any) { this._eventEmitter.emit(data); }
 
-  sendDataToParent(data:any){
-    this._eventEmitter.emit(data);
-  }
-
-  constructor(private _httpService: HttpService) {
-  }
-
-  clearForm(){
-    this.formBody = { star: "3 stars", content: "" }
-  }
-
-  ngOnInit() {
-    this.clearForm();
-  }
+  constructor(private _httpService: HttpService) { }
+  clearForm() { this.formBody = {star:"5 stars", content:""}  }
+  ngOnInit()  { this.clearForm(); }
 
   clickDel() {
     let obs = this._httpService.delCake(this.curCake._id);
       obs.subscribe(data => {
+        this.clearForm();
+        let emitArr = [];
+        emitArr.push(data['allCake']);
+        emitArr.push(null);
+        this.emitDataToParent(emitArr);
       });
-    this.clearForm();
   }
 
   onSubmitRate() {
     let obs = this._httpService.addCmt(this.curCake._id, this.formBody);
     obs.subscribe(data => {
-      let cakes = data['allCake'];
-      let cake  = data['oneCake'];
       this.clearForm();
+      let emitArr = [];
+      emitArr.push(data['allCake']);
+      emitArr.push(data['oneCake']);
+      this.emitDataToParent(emitArr);
     });
   }
 

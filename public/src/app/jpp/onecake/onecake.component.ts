@@ -13,7 +13,6 @@ export class OnecakeComponent implements OnInit {
 
   constructor(private _httpService: HttpService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

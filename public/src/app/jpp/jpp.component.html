@@ -3,17 +3,17 @@
     <h1>jpp: Rate My Cake</h1>
 
     <div class='box11'>
+        
         <h4>Submit a cake to be rated!</h4>
+
         <form (submit)="onSubmitAdd()">
             
-            <a *ngFor='let err of newErr'> {{err}} <br></a>
-            
-            Baker:<br>
-            <input type="text" name="formBody.baker" [(ngModel)]="formBody.baker"/> <br>
-        
-            image url:<br>
-            <input type="text" name="formBody.url" [(ngModel)]="formBody.url" /> <br>
-        
+            <a *ngFor='let err of formErr'> {{err}} <br></a>
+
+            Baker:<br><input type="text" name="formBody.baker" [(ngModel)]="formBody.baker"/> <br>
+
+            image url:<br><input type="text" name="formBody.url" [(ngModel)]="formBody.url" /> <br>
+
             <input type="submit" value="Add Cake" />
     
           </form>

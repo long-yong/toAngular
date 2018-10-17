@@ -108,13 +108,24 @@ module.exports = {
 
     addCake:(req,res)=>{
         Cake.create({ baker:req.body.baker,url:req.body.url })
-        .then(data=>{ Cake.find({}).then(data=>{ res.json({allCake:data}); }) })
-        .catch(err=>{ res.json({errArr:errArr(err)}); })
+        .then(data=>{ 
+            let cake = data;
+            Cake.find({}).then(data=>{ 
+                res.json({allCake:data,oneCake:cake}); 
+            }) 
+        })
+        .catch(err=>{
+            res.json({errArr:errArr(err)}); 
+        })
     },
 
     delCake:(req,res)=>{
         Cake.findByIdAndDelete(req.params.id)
-        .then(data=>{ Cake.find({}).then(data=>{ res.json({allCake:data}); }) })
+        .then(data=>{
+            Cake.find({}).then(data=>{
+                res.json({allCake:data});
+            })
+        })
     },
 
     addCmt:(req,res)=>{

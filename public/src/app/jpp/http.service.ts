@@ -23,8 +23,6 @@ export class HttpService {
 
   delCake(id:number) {
     return this._http.get('/delcake/'+id);
-  }
-  
-  
+  } 
 
 }
