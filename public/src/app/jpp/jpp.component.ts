@@ -9,14 +9,18 @@ import { HttpService } from './http.service';
 
 export class JppComponent implements OnInit {
 
-  allCake: any;
-  curCake: any;
-  newBody: any;
-  newErr:  any;  
-
+  allCake:  any;
+  curCake:  any;
+  formBody: any;
+  newErr:   any; 
+  
   constructor(private _httpService: HttpService) {}
 
-  notExist(err:any) {
+  dataFromChild(eventData){
+    console.log(eventData);
+  }
+
+  notErr(err:any) {
     if(err==undefined) return true;
     if(err==null) return true;
     return false;
@@ -31,13 +35,13 @@ export class JppComponent implements OnInit {
     this.allCake = null;
   }
 
-  clearBody() {
-    this.newBody = { title: "", description: "" }
+  clearForm() {
+    this.formBody = { title: "", description: "" }
   }
 
   ngOnInit() {
     this.clearErr();
-    this.clearBody();
+    this.clearForm();
     this.clearCake();
     this.getAllCake();
   }
@@ -51,24 +55,24 @@ export class JppComponent implements OnInit {
 
   onSubmitAdd() {
     this.clearErr();
-    this.addCake(this.newBody);
-    this.clearBody();
+    this.addCake(this.formBody);
+    this.clearForm();
   }
 
   addCake(body){
     let obs = this._httpService.addCake(body);
     obs.subscribe(data => {
       this.newErr = data['errArr' ];
-       if(this.notExist(this.newErr)) {
-         this.curCake = null;
-         this.allCake = data['allCake'];
+       if(this.notErr(this.newErr)) {
+          this.curCake = data['oneCake'];
+          this.allCake = data['allCake'];
        }
     });
   }
 
   clickImg(cake:any) {
-    this.curCake = cake; 
-    this.clearBody();
+    this.curCake = cake;
+    this.clearForm();
     this.clearErr();
   }
 

@@ -47,7 +47,7 @@ module.exports = function(app) {
     app.post('/newtask',                 controller.newTask);
 
 
-    // angular fpp
+    // angular task (fpp & gpp)
 
     app.post('/addtask',                 controller.addTask);
 
@@ -55,7 +55,8 @@ module.exports = function(app) {
 
     app.get('/deltask/:id',              controller.delTask);
 
-    // cake
+
+    // angular cake (hpp & jpp)
 
     app.get('/allcake',                  controller.allCake);
 

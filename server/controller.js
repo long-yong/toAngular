@@ -118,14 +118,15 @@ module.exports = {
     },
 
     addCmt:(req,res)=>{
-        Cake.findByIdAndUpdate(req.params.id,{$push:{comments:req.body}},(err)=>{
-            Cake.find({}).then(data=>{
-                let allCake = data;
-                Cake.findById(req.params.id).then(data=>{
-                    let oneCake = data;
-                    res.json({allCake:allCake,oneCake:oneCake});
+        Cmt.create(req.body,(err,data)=>{
+            Cake.findByIdAndUpdate(req.params.id,{$push:{comments:data}},(err)=>{
+                Cake.find({}).then(data=>{
+                    let cakes = data;
+                    Cake.findById(req.params.id).then(data=>{
+                        res.json({allCake:cakes,oneCake:data});
+                    })
                 })
-            })
+            });
         });
     }
 

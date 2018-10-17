@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { HttpService } from '../http.service';
 
 @Component({
@@ -9,45 +9,40 @@ import { HttpService } from '../http.service';
 
 export class EachcakeComponent implements OnInit {
 
-  cmtBody: any;
+  formBody: any;
 
-  eachOneCake:any;
-  eachAllCake:any;
+  @Input() curCake: any;
+  @Output() _eventEmitter = new EventEmitter();
 
-  @Input() eachCake: any; 
-
-  constructor(private _httpService: HttpService) {}
-
-  clearBody(){
-    this.cmtBody = { star: "3 stars", content: "" }
+  sendDataToParent(data:any){
+    this._eventEmitter.emit(data);
   }
 
-  clearCake() {
-    this.eachOneCake = null;
-    this.eachAllCake = null;
+  constructor(private _httpService: HttpService) {
+  }
+
+  clearForm(){
+    this.formBody = { star: "3 stars", content: "" }
   }
 
   ngOnInit() {
-    this.clearBody();
-    this.clearCake();
+    this.clearForm();
   }
 
-  clickDel(id:number) {
-    let obs = this._httpService.delCake(id);
+  clickDel() {
+    let obs = this._httpService.delCake(this.curCake._id);
       obs.subscribe(data => {
-        this.eachOneCake = null;
-        this.eachAllCake = data['allCake'];
       });
-    this.clearBody();
+    this.clearForm();
   }
 
-  onSubmitCmt(id:number) {
-    let obs = this._httpService.addCmt(id, this.cmtBody);
+  onSubmitRate() {
+    let obs = this._httpService.addCmt(this.curCake._id, this.formBody);
     obs.subscribe(data => {
-      this.eachAllCake = data['allCake'];
-      this.eachOneCake = data['oneCake']; 
+      let cakes = data['allCake'];
+      let cake  = data['oneCake'];
+      this.clearForm();
     });
-    this.clearBody();
   }
 
 }

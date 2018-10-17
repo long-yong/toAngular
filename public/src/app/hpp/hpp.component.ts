@@ -10,44 +10,40 @@ import { HttpClient } from '@angular/common/http';
 export class HppComponent implements OnInit {
 
   allCake: any;
-  oneCake: any;
+  curCake: any;
   newBody: any;
-  newErr:  any;  
   cmtBody: any;
+  newErr:  any;
 
   constructor(private _http: HttpClient) { }
 
-  notExist(err:any) {
+  notErr(err:any) {
     if(err==undefined) return true;
     if(err==null) return true;
     return false;
   }
 
-  clearErr() {
+  clearCake(){
+    this.curCake = null;
+    this.allCake = null;
+  }
+
+  clearFormErr() {
+    this.newBody = { title: "", description: "" }
+    this.cmtBody = { star: "3 stars", content: "" }
     this.newErr = null;
   }
 
-  clearCake(){
-    this.oneCake = null;
-    this.allCake = null;
-  } 
-
-  clearBody() {
-    this.newBody = { title: "", description: "" }
-    this.cmtBody = { star: "3 stars", content: "" }
-  }
-
   getAvgStar(){
-    if(this.oneCake==null) return;
-    let sum = 0, N = 0, cmts = this.oneCake.comments;
+    if(this.curCake==null) return;
+    let sum = 0, N = 0, cmts = this.curCake.comments;
     for(let i in cmts) { N++; sum+=parseInt(cmts[i].star.charAt(0)); }
     if(N>1) { sum/=N; sum=Math.floor(sum*100)/100; }
-    this.oneCake.avgStar = sum;
+    this.curCake.avgStar = sum;
   }
 
   ngOnInit() {
-    this.clearErr();
-    this.clearBody();
+    this.clearFormErr();
     this.clearCake();
     this.getAllCake();
   }
@@ -60,17 +56,16 @@ export class HppComponent implements OnInit {
   }
 
   onSubmitAdd() {
-    this.clearErr();
     this.addCake(this.newBody);
-    this.clearBody();
   }
 
   addCake(body){
     let obs = this._http.post('/addcake', body);
     obs.subscribe(data => {
+      this.clearFormErr();
        this.newErr = data['errArr' ];
-       if(this.notExist(this.newErr)) {
-         this.oneCake = null;
+       if(this.notErr(this.newErr)) {
+         this.curCake = null;
          this.allCake = data['allCake'];
        }
     });
@@ -80,28 +75,25 @@ export class HppComponent implements OnInit {
     let obs = this._http.post('/addcmt/'+id, this.cmtBody);
     obs.subscribe(data => {
       this.allCake = data['allCake'];
-      this.oneCake = data['oneCake']; 
+      this.curCake = data['oneCake']; 
       this.getAvgStar();
-    });
-    this.clearBody();
-    this.clearErr();
+      this.clearFormErr();
+    });    
   }
 
   clickImg(cake:any) {
-    this.oneCake = cake; 
+    this.curCake = cake; 
     this.getAvgStar();
-    this.clearBody();
-    this.clearErr();
-  }
+    this.clearFormErr();
+  }  
 
   clickDel(id:number) {
     let obs = this._http.get('/delcake/'+id);
       obs.subscribe(data => {
-        this.oneCake = null;
+        this.curCake = null;
         this.allCake = data['allCake'];
+        this.clearFormErr();
       });   
-    this.clearBody();
-    this.clearErr(); 
   }
 
 }

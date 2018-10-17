@@ -9,7 +9,7 @@ import { HttpService } from '../http.service';
 
 export class OnecakeComponent implements OnInit {
 
-  @Input() oneCake: any; 
+  @Input() curCake: any; 
 
   constructor(private _httpService: HttpService) {}
 

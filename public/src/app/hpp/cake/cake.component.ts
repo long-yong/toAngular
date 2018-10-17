@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class CakeComponent implements OnInit {
 
-  @Input() cakeToShow: any; 
+  @Input() curCake: any; 
 
   constructor() { }
 

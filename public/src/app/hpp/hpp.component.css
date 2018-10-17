@@ -23,7 +23,7 @@
     overflow-y:scroll;
 }
 .box121 {
-    width:200px;
+    width:180px;
     height:120px;
     border: 1px solid white;
     display: inline-block;
@@ -57,8 +57,4 @@ button {
 
 a {
     text-decoration:underline;
-}
-
-textarea {
-    width:170px;
 }

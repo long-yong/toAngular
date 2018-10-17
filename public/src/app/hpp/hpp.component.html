@@ -25,7 +25,7 @@
     <div *ngFor='let cake of allCake'>
 
       <div class='box121'>
-          <img ref='' src={{cake.url}} width="200" height="120" (click)="clickImg(cake)" />
+          <img ref='' src={{cake.url}} width="180" height="120" (click)="clickImg(cake)" />
       </div>
       
       <div class='box122'>
@@ -43,15 +43,14 @@
           <a (click)="clickDel(cake._id)">Delete cake</a>
         </form>
       </div><br>
-      
 
     </div>
 
   </div>
 
   <div>
-    <app-cake *ngIf="oneCake" [cakeToShow]="oneCake"></app-cake>
+    <app-cake *ngIf="curCake" [curCake]="curCake"></app-cake>
   </div>
 
   <br>
-</div>
+</div>>
