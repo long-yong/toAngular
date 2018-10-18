@@ -1,9 +1,9 @@
 <div id='container-j'>
 
-    <h1>jpp: Rate My Cake</h1>
+    <h1>jpp: Rate My Cake (input & output)</h1>
 
     <div class='box11'>
-        
+
         <h4>Submit a cake to be rated!</h4>
 
         <form (submit)="onSubmitAdd()">
@@ -12,7 +12,7 @@
 
             Baker:<br><input type="text" name="formBody.baker" [(ngModel)]="formBody.baker"/> <br>
 
-            image url:<br><input type="text" name="formBody.url" [(ngModel)]="formBody.url" /> <br>
+            Image URL:<br><input type="text" name="formBody.url" [(ngModel)]="formBody.url" /> <br>
 
             <input type="submit" value="Add Cake" />
     
